@@ -16,7 +16,7 @@ const UserForm = () => {
     e.preventDefault();
     if (selected && userName && password) { //if user enter all details
         try {
-          const response = await fetch('https://cloudy-nightshirt.cyclic.app/', {
+          const response = await fetch('https://cloudy-nightshirt.cyclic.app/add', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
