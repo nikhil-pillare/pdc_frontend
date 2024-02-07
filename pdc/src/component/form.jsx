@@ -7,18 +7,35 @@ const Options = [
   {name: 'android', logoUrl: 'https://www.svgrepo.com/show/327366/logo-google-playstore.svg' },
 ];
 
-const UserForm = ({ onSubmit }) => {
+const UserForm = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [selected, setSelected] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    if (selected && userName) {
-      alert("Form submitted successfully")
-    } else {
-      alert('Please Enter correct details');
-    }
+    if (selected && userName && password) {
+        try {
+          const response = await fetch('myapi', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({userName, password, selected}),
+          });
+  
+          if (response.ok) {
+            alert('Form submitted successfully');
+          } else {
+            alert('Failed to submit form. Please try again.');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error occured, Please try again.');
+        }
+      } else {
+        alert('Please enter all details');
+      }
   };
 
   return (
