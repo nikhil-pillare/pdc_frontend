@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../App.css"
-const Options = [
+const Options = [  // for mapping
   {name: 'React', logoUrl: 'https://www.svgrepo.com/show/424894/react-logo-programming.svg' },
   {name: 'github', logoUrl: 'https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png' },
   {name: 'ios', logoUrl: 'https://seeklogo.com/images/A/apple-logo-52C416BDDD-seeklogo.com.png' },
@@ -14,9 +14,9 @@ const UserForm = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    if (selected && userName && password) {
+    if (selected && userName && password) { //if user enter all details
         try {
-          const response = await fetch('myapi', {
+          const response = await fetch('https://cloudy-nightshirt.cyclic.app/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -40,8 +40,8 @@ const UserForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-        <h1 style={{textAlign:"center"}}>Test Assignment</h1>
-        <div style={{margin:"auto", width:"45%", border:"3px solid green-yellow", padding:"20px", borderRadius:"10px", backgroundColor:"peachpuff"}}>
+        <h1 style={{textAlign:"center"}}>Test Assignment</h1> 
+        <div style={{margin:"auto", width:"45%", border:"3px solid green-yellow", padding:"20px", borderRadius:"10px",backgroundColor:"peachpuff"}}>
         <label>
         Hello, My name is  
           <input style={{borderTop:"none", borderLeft:"none", borderRight:"none", margin:"10px"}} type="text" value={userName} onChange={(e) => setUserName(e.target.value)} />.
